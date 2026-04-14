@@ -1,0 +1,14 @@
+/* CGD-1: base styles. CGD-5: container sizes itself to the rendered grid. */
+body {
+  margin: 0;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#game-container {
+  background: #1a1a2e;
+  border: 2px solid #4a4a8a;
+}

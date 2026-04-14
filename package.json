@@ -1,0 +1,9 @@
+{
+  "name": "minigame-demo-claude",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CGD: small turn-based roguelike prototype (vanilla JS, ES modules)",
+  "scripts": {
+    "start": "npx --yes serve . -l 8080"
+  }
+}
