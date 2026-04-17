@@ -24,6 +24,7 @@ export function doEnemyTurns(state) {
       // Attack if the step lands on the player.
       if (nx === player.x && ny === player.y) {
         attack(e, player);
+        state.lastHits.push({ x: player.x, y: player.y });
         break;
       }
 

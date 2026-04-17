@@ -18,6 +18,7 @@ export function createGameState() {
     player: null,
     entities: [],
     turn: 0,
+    lastHits: [], // CGD-12: positions hit this turn, used for flash animation.
   };
 }
 

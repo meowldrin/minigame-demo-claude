@@ -1,38 +1,67 @@
-/* CGD-1: base styles. CGD-5: container sizes to grid. CGD-9: HUD + game-over. */
+/* CGD-1: base styles. CGD-5: container sizes to grid. CGD-9: HUD + game-over. CGD-13: UI refactor. */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background: #111;
+  background: #0a0a12;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  gap: 8px;
+  gap: 12px;
   font-family: monospace;
 }
 
+/* ── HUD ──────────────────────────────────────────────── */
 #hud {
   display: flex;
-  gap: 32px;
-  color: #aaa;
-  font-size: 14px;
-  letter-spacing: 0.05em;
+  gap: 0;
+  background: #12122a;
+  border: 1px solid #2a2a55;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
-#hud-hp   { color: #e55; }
-#hud-floor { color: #d4a24a; }
-#hud-turn  { color: #666; }
+#hud span {
+  padding: 6px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  border-right: 1px solid #2a2a55;
+}
 
+#hud span:last-child {
+  border-right: none;
+}
+
+#hud-hp    { color: #ff6b6b; }
+#hud-floor { color: #d4a24a; }
+#hud-turn  { color: #7070aa; }
+
+/* ── Game container ───────────────────────────────────── */
 #game-container {
   position: relative;
   background: #000;
-  border: 2px solid #4a4a8a;
+  border: 1px solid #2a2a55;
+  box-shadow: 0 0 24px rgba(60, 60, 160, 0.25);
 }
 
+/* Tiles rendered by JS get this class for the subtle grid */
+.tile {
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* ── Controls hint ────────────────────────────────────── */
+#controls {
+  color: #333366;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+/* ── Game over ────────────────────────────────────────── */
 #game-over {
   position: fixed;
   inset: 0;
@@ -40,17 +69,28 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.75);
-  color: #e55;
+  background: rgba(0, 0, 0, 0.82);
+  color: #ff6b6b;
   font-size: 48px;
   font-family: monospace;
-  letter-spacing: 0.1em;
-  gap: 12px;
+  letter-spacing: 0.12em;
+  gap: 14px;
 }
 
 #game-over p:last-child {
-  font-size: 18px;
-  color: #888;
+  font-size: 16px;
+  color: #555588;
+  letter-spacing: 0.06em;
 }
 
 .hidden { display: none !important; }
+
+/* ── Hit flash animation ──────────────────────────────── */
+@keyframes hit-flash {
+  0%   { background-color: rgba(255, 60, 60, 0.85); }
+  100% { background-color: transparent; }
+}
+
+.hit {
+  animation: hit-flash 0.2s ease-out forwards;
+}

@@ -19,6 +19,7 @@ export function tryMovePlayer(state, dx, dy) {
   const enemy = getEnemyAt(state, nx, ny);
   if (enemy) {
     attack(player, enemy);
+    state.lastHits.push({ x: nx, y: ny });
     state.turn += 1;
     return true;
   }
@@ -35,6 +36,7 @@ export function bindPlayerInput(state, onTurn) {
     const dir = KEY_DIRS[e.key];
     if (!dir) return;
     e.preventDefault();
+    state.lastHits = [];
     const acted = tryMovePlayer(state, dir[0], dir[1]);
     if (acted && typeof onTurn === "function") onTurn(state);
   });
