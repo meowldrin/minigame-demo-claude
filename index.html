@@ -1,4 +1,5 @@
 <!-- CGD-1: project entry point -->
+<!-- CGD-9: adds HUD and game-over overlay -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +9,16 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="hud">
+      <span id="hud-hp">HP: 10</span>
+      <span id="hud-floor">Floor: 1</span>
+      <span id="hud-turn">Turn: 0</span>
+    </div>
     <div id="game-container"></div>
+    <div id="game-over" class="hidden">
+      <p>GAME OVER</p>
+      <p id="game-over-turns"></p>
+    </div>
     <script type="module" src="src/main.js"></script>
   </body>
 </html>

@@ -1,13 +1,14 @@
 // CGD-2: game state manager — single source of truth for floor, room, player, enemies.
 // CGD-4: adds collision check + turn counter.
+// CGD-8: adds getEnemyAt helper for combat.
 import { TILE } from "./mapGenerator.js";
 
 export function createPlayer(x, y, hp = 10) {
-  return { type: "player", x, y, hp };
+  return { type: "player", x, y, hp, attack: 1 };
 }
 
 export function createEnemy(x, y, hp = 3) {
-  return { type: "enemy", x, y, hp };
+  return { type: "enemy", x, y, hp, attack: 1 };
 }
 
 export function createGameState() {
@@ -30,4 +31,8 @@ export function canMoveTo(state, x, y) {
   if (y < 0 || y >= room.length) return false;
   if (x < 0 || x >= room[0].length) return false;
   return room[y][x] !== TILE.WALL;
+}
+
+export function getEnemyAt(state, x, y) {
+  return state.entities.find(e => e.type === "enemy" && e.x === x && e.y === y) ?? null;
 }

@@ -1,14 +1,56 @@
-/* CGD-1: base styles. CGD-5: container sizes itself to the rendered grid. */
+/* CGD-1: base styles. CGD-5: container sizes to grid. CGD-9: HUD + game-over. */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background: #111;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   min-height: 100vh;
+  gap: 8px;
+  font-family: monospace;
 }
 
+#hud {
+  display: flex;
+  gap: 32px;
+  color: #aaa;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+#hud-hp   { color: #e55; }
+#hud-floor { color: #d4a24a; }
+#hud-turn  { color: #666; }
+
 #game-container {
-  background: #1a1a2e;
+  position: relative;
+  background: #000;
   border: 2px solid #4a4a8a;
 }
+
+#game-over {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.75);
+  color: #e55;
+  font-size: 48px;
+  font-family: monospace;
+  letter-spacing: 0.1em;
+  gap: 12px;
+}
+
+#game-over p:last-child {
+  font-size: 18px;
+  color: #888;
+}
+
+.hidden { display: none !important; }

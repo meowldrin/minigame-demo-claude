@@ -1,5 +1,7 @@
 // CGD-4: player actions — keyboard input and movement with collision.
-import { canMoveTo } from "./gameState.js";
+// CGD-8: bumping into an enemy attacks it instead of moving.
+import { canMoveTo, getEnemyAt } from "./gameState.js";
+import { attack } from "./combat.js";
 
 const KEY_DIRS = {
   ArrowUp: [0, -1], w: [0, -1], W: [0, -1],
@@ -13,6 +15,14 @@ export function tryMovePlayer(state, dx, dy) {
   if (!player) return false;
   const nx = player.x + dx;
   const ny = player.y + dy;
+
+  const enemy = getEnemyAt(state, nx, ny);
+  if (enemy) {
+    attack(player, enemy);
+    state.turn += 1;
+    return true;
+  }
+
   if (!canMoveTo(state, nx, ny)) return false;
   player.x = nx;
   player.y = ny;
@@ -25,7 +35,7 @@ export function bindPlayerInput(state, onTurn) {
     const dir = KEY_DIRS[e.key];
     if (!dir) return;
     e.preventDefault();
-    const moved = tryMovePlayer(state, dir[0], dir[1]);
-    if (moved && typeof onTurn === "function") onTurn(state);
+    const acted = tryMovePlayer(state, dir[0], dir[1]);
+    if (acted && typeof onTurn === "function") onTurn(state);
   });
 }
