@@ -7,6 +7,7 @@ import { doEnemyTurns } from "./enemy.js";
 import { resolveDeaths } from "./combat.js";
 import { render } from "./render.js";
 import { createFog, updateFog } from "./fogOfWar.js";
+import { loadSprites } from "./sprites.js";
 
 const container  = document.getElementById("game-container");
 const hudHp      = document.getElementById("hud-hp");
@@ -14,6 +15,9 @@ const hudFloor   = document.getElementById("hud-floor");
 const hudTurn    = document.getElementById("hud-turn");
 const gameOverEl = document.getElementById("game-over");
 const gameOverTurns = document.getElementById("game-over-turns");
+
+// Load all SVG sprites before starting the game.
+await loadSprites();
 
 let gameOver = false;
 

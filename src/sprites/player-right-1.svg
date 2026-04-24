@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Head (profile, offset right) -->
+  <circle cx="17" cy="8" r="5" fill="#f5d08a"/>
+  <!-- Body (narrower, side view) -->
+  <rect x="13" y="13" width="6" height="9" fill="#4a9ed8"/>
+  <!-- Rear arm (swing up) -->
+  <rect x="9" y="11" width="4" height="5" fill="#4a9ed8"/>
+  <!-- Legs (stride) -->
+  <rect x="12" y="22" width="3" height="9" fill="#2a6ea0"/>
+  <rect x="16" y="22" width="3" height="7" fill="#2a6ea0"/>
+</svg>

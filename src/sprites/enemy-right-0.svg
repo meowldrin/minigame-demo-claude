@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Head -->
+  <circle cx="16" cy="7" r="7" fill="#c33"/>
+  <!-- Eye (right side only) -->
+  <circle cx="21" cy="6" r="2" fill="#ffcc00"/>
+  <!-- Body -->
+  <rect x="10" y="14" width="12" height="8" fill="#c33"/>
+  <!-- Lead arm (right, forward) -->
+  <rect x="22" y="12" width="5" height="4" fill="#8a1a1a"/>
+  <!-- Trailing arm (left, behind) -->
+  <rect x="7"  y="14" width="4" height="4" fill="#8a1a1a"/>
+  <!-- Legs (standing) -->
+  <rect x="10" y="22" width="4" height="7" fill="#8a1a1a"/>
+  <rect x="18" y="22" width="4" height="7" fill="#8a1a1a"/>
+</svg>

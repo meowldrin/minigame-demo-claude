@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Head (back, darker) -->
+  <circle cx="16" cy="8" r="5" fill="#c8a060"/>
+  <!-- Body (back of suit) -->
+  <rect x="12" y="13" width="8" height="9" fill="#2a6ea0"/>
+  <!-- Arms (walking) -->
+  <rect x="8"  y="11" width="3" height="6" fill="#4a9ed8"/>
+  <rect x="21" y="15" width="3" height="6" fill="#4a9ed8"/>
+  <!-- Legs (stride) -->
+  <rect x="11" y="22" width="3" height="8" fill="#2a6ea0"/>
+  <rect x="18" y="22" width="3" height="8" fill="#2a6ea0"/>
+</svg>
