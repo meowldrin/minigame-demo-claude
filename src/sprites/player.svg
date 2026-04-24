@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="128" viewBox="0 0 64 128">
+
+  <!-- ── ROW 0: facing DOWN ─────────────────────────────── -->
+
+  <!-- down, frame 0 (standing) -->
+  <g transform="translate(0,0)">
+    <circle cx="16" cy="8"  r="5" fill="#f5d08a"/>
+    <circle cx="14" cy="8"  r="1" fill="#222"/>
+    <circle cx="18" cy="8"  r="1" fill="#222"/>
+    <rect x="12" y="13" width="8" height="9"  fill="#4a9ed8"/>
+    <rect x="8"  y="13" width="3" height="6"  fill="#4a9ed8"/>
+    <rect x="21" y="13" width="3" height="6"  fill="#4a9ed8"/>
+    <rect x="12" y="22" width="3" height="8"  fill="#2a6ea0"/>
+    <rect x="17" y="22" width="3" height="8"  fill="#2a6ea0"/>
+  </g>
+
+  <!-- down, frame 1 (walking) -->
+  <g transform="translate(32,0)">
+    <circle cx="16" cy="8"  r="5" fill="#f5d08a"/>
+    <circle cx="14" cy="8"  r="1" fill="#222"/>
+    <circle cx="18" cy="8"  r="1" fill="#222"/>
+    <rect x="12" y="13" width="8" height="9"  fill="#4a9ed8"/>
+    <rect x="8"  y="11" width="3" height="6"  fill="#4a9ed8"/>
+    <rect x="21" y="15" width="3" height="6"  fill="#4a9ed8"/>
+    <rect x="11" y="22" width="3" height="8"  fill="#2a6ea0"/>
+    <rect x="18" y="22" width="3" height="8"  fill="#2a6ea0"/>
+  </g>
+
+  <!-- ── ROW 1: facing UP ───────────────────────────────── -->
+
+  <!-- up, frame 0 (standing, back) -->
+  <g transform="translate(0,32)">
+    <circle cx="16" cy="8"  r="5" fill="#c8a060"/>
+    <rect x="12" y="13" width="8" height="9"  fill="#2a6ea0"/>
+    <rect x="8"  y="13" width="3" height="6"  fill="#4a9ed8"/>
+    <rect x="21" y="13" width="3" height="6"  fill="#4a9ed8"/>
+    <rect x="12" y="22" width="3" height="8"  fill="#2a6ea0"/>
+    <rect x="17" y="22" width="3" height="8"  fill="#2a6ea0"/>
+  </g>
+
+  <!-- up, frame 1 (walking, back) -->
+  <g transform="translate(32,32)">
+    <circle cx="16" cy="8"  r="5" fill="#c8a060"/>
+    <rect x="12" y="13" width="8" height="9"  fill="#2a6ea0"/>
+    <rect x="8"  y="11" width="3" height="6"  fill="#4a9ed8"/>
+    <rect x="21" y="15" width="3" height="6"  fill="#4a9ed8"/>
+    <rect x="11" y="22" width="3" height="8"  fill="#2a6ea0"/>
+    <rect x="18" y="22" width="3" height="8"  fill="#2a6ea0"/>
+  </g>
+
+  <!-- ── ROW 2: facing RIGHT ────────────────────────────── -->
+
+  <!-- right, frame 0 (standing) -->
+  <g transform="translate(0,64)">
+    <circle cx="17" cy="8"  r="5" fill="#f5d08a"/>
+    <rect x="13" y="13" width="6" height="9"  fill="#4a9ed8"/>
+    <rect x="9"  y="14" width="4" height="5"  fill="#4a9ed8"/>
+    <rect x="13" y="22" width="3" height="8"  fill="#2a6ea0"/>
+    <rect x="16" y="22" width="3" height="8"  fill="#2a6ea0"/>
+  </g>
+
+  <!-- right, frame 1 (walking) -->
+  <g transform="translate(32,64)">
+    <circle cx="17" cy="8"  r="5" fill="#f5d08a"/>
+    <rect x="13" y="13" width="6" height="9"  fill="#4a9ed8"/>
+    <rect x="9"  y="11" width="4" height="5"  fill="#4a9ed8"/>
+    <rect x="12" y="22" width="3" height="9"  fill="#2a6ea0"/>
+    <rect x="16" y="22" width="3" height="7"  fill="#2a6ea0"/>
+  </g>
+
+  <!-- ── ROW 3: facing LEFT ─────────────────────────────── -->
+
+  <!-- left, frame 0 (standing) -->
+  <g transform="translate(0,96)">
+    <circle cx="15" cy="8"  r="5" fill="#f5d08a"/>
+    <rect x="13" y="13" width="6" height="9"  fill="#4a9ed8"/>
+    <rect x="19" y="14" width="4" height="5"  fill="#4a9ed8"/>
+    <rect x="16" y="22" width="3" height="8"  fill="#2a6ea0"/>
+    <rect x="13" y="22" width="3" height="8"  fill="#2a6ea0"/>
+  </g>
+
+  <!-- left, frame 1 (walking) -->
+  <g transform="translate(32,96)">
+    <circle cx="15" cy="8"  r="5" fill="#f5d08a"/>
+    <rect x="13" y="13" width="6" height="9"  fill="#4a9ed8"/>
+    <rect x="19" y="11" width="4" height="5"  fill="#4a9ed8"/>
+    <rect x="17" y="22" width="3" height="9"  fill="#2a6ea0"/>
+    <rect x="13" y="22" width="3" height="7"  fill="#2a6ea0"/>
+  </g>
+
+</svg>
