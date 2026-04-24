@@ -4,11 +4,11 @@
 import { TILE } from "./mapGenerator.js";
 
 export function createPlayer(x, y, hp = 10) {
-  return { type: "player", x, y, hp, attack: 1 };
+  return { type: "player", x, y, hp, attack: 1, facing: "down", step: 0 };
 }
 
 export function createEnemy(x, y, hp = 3) {
-  return { type: "enemy", x, y, hp, attack: 1 };
+  return { type: "enemy", x, y, hp, attack: 1, facing: "down", step: 0 };
 }
 
 export function createGameState() {

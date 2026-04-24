@@ -25,6 +25,8 @@ export function doEnemyTurns(state) {
       if (nx === player.x && ny === player.y) {
         attack(e, player);
         state.lastHits.push({ x: player.x, y: player.y });
+        e.facing = mx > 0 ? "right" : mx < 0 ? "left" : my < 0 ? "up" : "down";
+        e.step++;
         break;
       }
 
@@ -32,6 +34,8 @@ export function doEnemyTurns(state) {
       if (canMoveTo(state, nx, ny) && !getEnemyAt(state, nx, ny)) {
         e.x = nx;
         e.y = ny;
+        e.facing = mx > 0 ? "right" : mx < 0 ? "left" : my < 0 ? "up" : "down";
+        e.step++;
         break;
       }
     }

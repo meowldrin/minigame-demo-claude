@@ -10,6 +10,12 @@ const KEY_DIRS = {
   ArrowRight: [1, 0], d: [1, 0], D: [1, 0],
 };
 
+function dxdyToFacing(dx, dy) {
+  if (dx > 0) return "right";
+  if (dx < 0) return "left";
+  return dy < 0 ? "up" : "down";
+}
+
 export function tryMovePlayer(state, dx, dy) {
   const { player } = state;
   if (!player) return false;
@@ -20,6 +26,8 @@ export function tryMovePlayer(state, dx, dy) {
   if (enemy) {
     attack(player, enemy);
     state.lastHits.push({ x: nx, y: ny });
+    player.facing = dxdyToFacing(dx, dy);
+    player.step++;
     state.turn += 1;
     return true;
   }
@@ -27,6 +35,8 @@ export function tryMovePlayer(state, dx, dy) {
   if (!canMoveTo(state, nx, ny)) return false;
   player.x = nx;
   player.y = ny;
+  player.facing = dxdyToFacing(dx, dy);
+  player.step++;
   state.turn += 1;
   return true;
 }
