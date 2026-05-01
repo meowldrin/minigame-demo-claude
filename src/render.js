@@ -3,7 +3,7 @@
 // CGD-13: .tile class for grid, stairs glyph, revised palette.
 // CGD-18: canvas overlay for entity sprites — see sprites.js.
 import { TILE } from "./mapGenerator.js";
-import { drawPlayer, drawEnemy } from "./sprites.js";
+import { drawPlayer, drawEnemy, drawChest } from "./sprites.js";
 
 const TILE_SIZE = 32;
 
@@ -14,9 +14,6 @@ const TILE_COLORS = {
   [TILE.CHEST]:  "#7a5214",  // closed chest — warm brown
 };
 
-const TILE_COLORS_LOOTED = {
-  [TILE.CHEST]:  "#2a2010",  // looted chest — dark, emptied
-};
 
 const TILE_COLORS_DIM = {
   [TILE.WALL]:   "#111126",
@@ -60,11 +57,9 @@ export function render(state, container, fog) {
         }
       }
 
-      const isLooted = tile === TILE.CHEST && state.chests[`${x},${y}`];
-      const color = isLooted ? TILE_COLORS_LOOTED[TILE.CHEST] : (TILE_COLORS[tile] ?? TILE_COLORS[TILE.FLOOR]);
+      const color = TILE_COLORS[tile] ?? TILE_COLORS[TILE.FLOOR];
       const cell = makeCell(x, y, color);
       if (tile === TILE.STAIRS) addStairsGlyph(cell);
-      if (tile === TILE.CHEST)  addChestGlyph(cell, isLooted);
       container.appendChild(cell);
     }
   }
@@ -84,6 +79,16 @@ export function render(state, container, fog) {
 
   const ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, cw, ch);
+
+  // Draw chest sprites for visible chest tiles.
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      if (room[y][x] !== TILE.CHEST) continue;
+      if (fog && !fog.visible[y][x]) continue;
+      const isLooted = !!(state.chests[`${x},${y}`]);
+      drawChest(ctx, x, y, isLooted);
+    }
+  }
 
   for (const e of entities) {
     if (e.type === "enemy") {
@@ -132,19 +137,4 @@ function addStairsGlyph(cell) {
   cell.textContent = ">";
 }
 
-function addChestGlyph(cell, isLooted) {
-  cell.style.display         = "flex";
-  cell.style.alignItems      = "center";
-  cell.style.justifyContent  = "center";
-  cell.style.fontFamily      = "monospace";
-  cell.style.fontSize        = "16px";
-  cell.style.fontWeight      = "bold";
-  if (isLooted) {
-    cell.style.color = "#5a4828";
-    cell.textContent = "_";  // empty, flat
-  } else {
-    cell.style.color = "#ffd060";
-    cell.textContent = "C";  // closed chest
-  }
-}
 

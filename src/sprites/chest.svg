@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="32" viewBox="0 0 64 32">
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- FRAME 0 — Closed chest (x 0..31)               -->
+  <!-- ═══════════════════════════════════════════════ -->
+
+  <!-- Bottom shadow -->
+  <ellipse cx="16" cy="30" rx="12" ry="2" fill="#1a0a00" opacity="0.35"/>
+
+  <!-- Chest body -->
+  <rect x="3" y="16" width="26" height="13" rx="2" fill="#7a4a18" stroke="#2a1000" stroke-width="1"/>
+  <!-- Body wood grain lines -->
+  <line x1="3" y1="21" x2="29" y2="21" stroke="#5a3410" stroke-width="0.5" opacity="0.6"/>
+  <line x1="3" y1="25" x2="29" y2="25" stroke="#5a3410" stroke-width="0.5" opacity="0.6"/>
+
+  <!-- Lid -->
+  <rect x="3" y="8" width="26" height="10" rx="2" fill="#9b6122" stroke="#2a1000" stroke-width="1"/>
+  <!-- Lid highlight -->
+  <rect x="4" y="9" width="24" height="4" rx="1" fill="#b8782a" opacity="0.5"/>
+  <rect x="5" y="9.5" width="22" height="2" rx="1" fill="rgba(255,200,80,0.2)"/>
+
+  <!-- Joint band -->
+  <rect x="3" y="17" width="26" height="2" fill="#3a2008"/>
+
+  <!-- Metal corner reinforcements -->
+  <rect x="3"  y="8" width="3" height="21" rx="1" fill="#4a2c0a" stroke="#2a1400" stroke-width="0.5"/>
+  <rect x="26" y="8" width="3" height="21" rx="1" fill="#4a2c0a" stroke="#2a1400" stroke-width="0.5"/>
+
+  <!-- Latch plate -->
+  <rect x="11" y="13" width="10" height="6" rx="1.5" fill="#c8921a" stroke="#6a4200" stroke-width="0.5"/>
+  <!-- Latch highlight -->
+  <rect x="12" y="14" width="8" height="2" rx="1" fill="rgba(255,220,100,0.4)"/>
+  <!-- Keyhole -->
+  <circle cx="16" cy="16" r="1.8" fill="#1a0800"/>
+  <rect x="15.3" y="16" width="1.4" height="2.5" rx="0.5" fill="#1a0800"/>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- FRAME 1 — Open chest (x 32..63)                -->
+  <!-- ═══════════════════════════════════════════════ -->
+
+  <!-- Bottom shadow -->
+  <ellipse cx="48" cy="30" rx="12" ry="2" fill="#1a0a00" opacity="0.35"/>
+
+  <!-- Chest body (lower portion, lid removed) -->
+  <rect x="35" y="20" width="26" height="9" rx="2" fill="#7a4a18" stroke="#2a1000" stroke-width="1"/>
+  <!-- Body wood grain -->
+  <line x1="35" y1="24" x2="61" y2="24" stroke="#5a3410" stroke-width="0.5" opacity="0.6"/>
+
+  <!-- Interior glow background -->
+  <rect x="36" y="21" width="24" height="7" rx="1" fill="#c07010"/>
+  <!-- Golden glow -->
+  <rect x="37" y="22" width="22" height="5" rx="1" fill="#ffe060" opacity="0.85"/>
+  <!-- Inner light -->
+  <ellipse cx="48" cy="24" rx="8" ry="3" fill="#fff4a0" opacity="0.6"/>
+
+  <!-- Coins inside -->
+  <circle cx="44" cy="25" r="2"   fill="#f0c030" stroke="#b08010" stroke-width="0.5"/>
+  <circle cx="48" cy="23.5" r="2" fill="#f0c030" stroke="#b08010" stroke-width="0.5"/>
+  <circle cx="52" cy="25" r="2"   fill="#f0c030" stroke="#b08010" stroke-width="0.5"/>
+  <!-- Coin shine -->
+  <circle cx="44.8" cy="24.2" r="0.6" fill="rgba(255,255,200,0.8)"/>
+  <circle cx="48.8" cy="22.7" r="0.6" fill="rgba(255,255,200,0.8)"/>
+  <circle cx="52.8" cy="24.2" r="0.6" fill="rgba(255,255,200,0.8)"/>
+
+  <!-- Lid open (leaning back as a parallelogram) -->
+  <polygon points="35,21 61,21 58,9 38,9" fill="#9b6122" stroke="#2a1000" stroke-width="1"/>
+  <!-- Lid inner face (slightly lighter) -->
+  <polygon points="36,20.5 60,20.5 57.5,10 38.5,10" fill="#b8782a" opacity="0.6"/>
+  <!-- Lid highlight -->
+  <polygon points="39,10 57,10 56,12.5 40,12.5" fill="rgba(255,200,80,0.2)"/>
+
+  <!-- Metal corner reinforcements on body -->
+  <rect x="35" y="20" width="3" height="9" rx="1" fill="#4a2c0a" stroke="#2a1400" stroke-width="0.5"/>
+  <rect x="58" y="20" width="3" height="9" rx="1" fill="#4a2c0a" stroke="#2a1400" stroke-width="0.5"/>
+
+  <!-- Glow halo outside chest (subtle) -->
+  <ellipse cx="48" cy="21" rx="14" ry="3" fill="#ffe060" opacity="0.08"/>
+
+</svg>
