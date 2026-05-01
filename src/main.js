@@ -1,16 +1,21 @@
 // CGD-1..CGD-9: entry point — state, map, fog, combat, enemy turns, HUD, game-over.
 // CGD-10: stairs advance to next floor.
+// CGD-23: chest interaction — step to loot.
 import { createGameState, createPlayer, createEnemy, addEntity } from "./gameState.js";
 import { generateRoom, TILE } from "./mapGenerator.js";
+import { rollLoot } from "./items.js";
 import { bindPlayerInput } from "./player.js";
 import { doEnemyTurns } from "./enemy.js";
 import { resolveDeaths } from "./combat.js";
 import { render } from "./render.js";
 import { createFog, updateFog } from "./fogOfWar.js";
 import { loadSprites } from "./sprites.js";
+import { initInventory, isInventoryOpen } from "./inventory.js";
 
 const container  = document.getElementById("game-container");
 const hudHp      = document.getElementById("hud-hp");
+const hudAtk     = document.getElementById("hud-atk");
+const hudDef     = document.getElementById("hud-def");
 const hudFloor   = document.getElementById("hud-floor");
 const hudTurn    = document.getElementById("hud-turn");
 const gameOverEl = document.getElementById("game-over");
@@ -34,6 +39,9 @@ updateFog(fog, state.player.x, state.player.y);
 
 render(state, container, fog);
 updateHud(state);
+
+// CGD-24: init inventory overlay (I key / Escape to toggle).
+initInventory(state, () => updateHud(state));
 
 function nextFloor(s, f) {
   s.currentFloor += 1;
@@ -60,6 +68,7 @@ function nextFloor(s, f) {
 
 bindPlayerInput(state, (s) => {
   if (gameOver) return;
+  if (isInventoryOpen()) return;
 
   // Remove enemies killed by the player.
   resolveDeaths(s);
@@ -68,6 +77,16 @@ bindPlayerInput(state, (s) => {
   if (s.room[s.player.y][s.player.x] === TILE.STAIRS) {
     nextFloor(s, fog);
     return;
+  }
+
+  // Check if the player stepped on a closed chest.
+  if (s.room[s.player.y][s.player.x] === TILE.CHEST) {
+    const key = `${s.player.x},${s.player.y}`;
+    if (!s.chests[key]) {
+      s.chests[key] = true;
+      const items = rollLoot(s.currentFloor);
+      items.forEach(item => s.player.inventory.push(item));
+    }
   }
 
   // Enemy turns — may damage the player.
@@ -90,7 +109,9 @@ bindPlayerInput(state, (s) => {
 });
 
 function updateHud(s) {
-  hudHp.textContent    = `HP: ${s.player.hp}`;
+  hudHp.textContent    = `HP: ${s.player.hp}/${s.player.maxHp}`;
+  hudAtk.textContent   = `ATK: ${s.player.attack}`;
+  hudDef.textContent   = `DEF: ${s.player.defense}`;
   hudFloor.textContent = `Floor: ${s.currentFloor}`;
   hudTurn.textContent  = `Turn: ${s.turn}`;
 }

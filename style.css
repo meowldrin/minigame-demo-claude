@@ -38,6 +38,8 @@ body {
 }
 
 #hud-hp    { color: #ff6b6b; }
+#hud-atk   { color: #ff9944; }
+#hud-def   { color: #44aadd; }
 #hud-floor { color: #d4a24a; }
 #hud-turn  { color: #7070aa; }
 
@@ -59,6 +61,116 @@ body {
   color: #333366;
   font-size: 12px;
   letter-spacing: 0.08em;
+}
+
+/* ── Inventory overlay ────────────────────────────────── */
+#inventory {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.78);
+  z-index: 10;
+}
+
+.inv-panel {
+  background: #12122a;
+  border: 1px solid #2a2a55;
+  border-radius: 6px;
+  padding: 24px 32px;
+  min-width: 340px;
+  max-width: 480px;
+  font-family: monospace;
+  color: #c8c8e8;
+}
+
+.inv-panel h2 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  color: #ffe08a;
+  border-bottom: 1px solid #2a2a55;
+  padding-bottom: 8px;
+}
+
+.inv-section {
+  margin-bottom: 16px;
+}
+
+.inv-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #555588;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.inv-eq-row {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  margin-bottom: 4px;
+  align-items: center;
+}
+
+.inv-slot-name { color: #7070aa; min-width: 60px; }
+.inv-slot-value { color: #c8c8e8; }
+
+.inv-slot-btn {
+  margin-left: auto;
+  font-family: monospace;
+  font-size: 11px;
+  padding: 2px 8px;
+  background: #1e1e40;
+  color: #9090cc;
+  border: 1px solid #3a3a66;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.inv-slot-btn:hover { background: #2a2a55; color: #c8c8e8; }
+
+.inv-item-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid #1a1a36;
+  font-size: 13px;
+}
+
+.inv-item-name { flex: 1; }
+
+.inv-rarity {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 1px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.rarity-common { color: #888899; border: 1px solid #444455; }
+.rarity-rare   { color: #5599ff; border: 1px solid #3366aa; }
+.rarity-epic   { color: #cc77ff; border: 1px solid #883399; }
+
+.inv-action-btn {
+  font-family: monospace;
+  font-size: 11px;
+  padding: 2px 10px;
+  background: #1a2a3a;
+  color: #7ab8d4;
+  border: 1px solid #2a4a6a;
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.inv-action-btn:hover { background: #1e3448; color: #aaddff; }
+
+.inv-empty {
+  font-size: 13px;
+  color: #444466;
+  font-style: italic;
+  padding: 6px 0;
 }
 
 /* ── Game over ────────────────────────────────────────── */
