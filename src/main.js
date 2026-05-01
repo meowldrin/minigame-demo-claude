@@ -7,6 +7,7 @@ import { doEnemyTurns } from "./enemy.js";
 import { resolveDeaths } from "./combat.js";
 import { render } from "./render.js";
 import { createFog, updateFog } from "./fogOfWar.js";
+import { loadSprites } from "./sprites.js";
 
 const container  = document.getElementById("game-container");
 const hudHp      = document.getElementById("hud-hp");
@@ -14,6 +15,9 @@ const hudFloor   = document.getElementById("hud-floor");
 const hudTurn    = document.getElementById("hud-turn");
 const gameOverEl = document.getElementById("game-over");
 const gameOverTurns = document.getElementById("game-over-turns");
+
+// Load all SVG sprites before starting the game.
+await loadSprites();
 
 let gameOver = false;
 
@@ -37,6 +41,7 @@ function nextFloor(s, f) {
   s.player.x = 2;
   s.player.y = 2;
   s.entities = [];
+  s.chests = {};  // CGD-20: reset chest loot state for the new floor.
   const enemyCount = 2 + Math.floor(s.currentFloor / 2);
   for (let i = 0; i < enemyCount; i++) {
     addEntity(s, createEnemy(
