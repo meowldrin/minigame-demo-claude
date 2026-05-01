@@ -14,6 +14,8 @@ import { initInventory, isInventoryOpen } from "./inventory.js";
 
 const container  = document.getElementById("game-container");
 const hudHp      = document.getElementById("hud-hp");
+const hudAtk     = document.getElementById("hud-atk");
+const hudDef     = document.getElementById("hud-def");
 const hudFloor   = document.getElementById("hud-floor");
 const hudTurn    = document.getElementById("hud-turn");
 const gameOverEl = document.getElementById("game-over");
@@ -107,7 +109,9 @@ bindPlayerInput(state, (s) => {
 });
 
 function updateHud(s) {
-  hudHp.textContent    = `HP: ${s.player.hp}`;
+  hudHp.textContent    = `HP: ${s.player.hp}/${s.player.maxHp}`;
+  hudAtk.textContent   = `ATK: ${s.player.attack}`;
+  hudDef.textContent   = `DEF: ${s.player.defense}`;
   hudFloor.textContent = `Floor: ${s.currentFloor}`;
   hudTurn.textContent  = `Turn: ${s.turn}`;
 }

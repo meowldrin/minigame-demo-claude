@@ -38,6 +38,8 @@ body {
 }
 
 #hud-hp    { color: #ff6b6b; }
+#hud-atk   { color: #ff9944; }
+#hud-def   { color: #44aadd; }
 #hud-floor { color: #d4a24a; }
 #hud-turn  { color: #7070aa; }
 
