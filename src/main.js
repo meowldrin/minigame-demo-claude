@@ -10,6 +10,7 @@ import { resolveDeaths } from "./combat.js";
 import { render } from "./render.js";
 import { createFog, updateFog } from "./fogOfWar.js";
 import { loadSprites } from "./sprites.js";
+import { initInventory, isInventoryOpen } from "./inventory.js";
 
 const container  = document.getElementById("game-container");
 const hudHp      = document.getElementById("hud-hp");
@@ -37,6 +38,9 @@ updateFog(fog, state.player.x, state.player.y);
 render(state, container, fog);
 updateHud(state);
 
+// CGD-24: init inventory overlay (I key / Escape to toggle).
+initInventory(state, () => updateHud(state));
+
 function nextFloor(s, f) {
   s.currentFloor += 1;
   s.room = generateRoom(30, 20);
@@ -62,6 +66,7 @@ function nextFloor(s, f) {
 
 bindPlayerInput(state, (s) => {
   if (gameOver) return;
+  if (isInventoryOpen()) return;
 
   // Remove enemies killed by the player.
   resolveDeaths(s);

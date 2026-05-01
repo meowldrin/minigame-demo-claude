@@ -1,5 +1,6 @@
 <!-- CGD-1: project entry point -->
 <!-- CGD-9: adds HUD and game-over overlay -->
+<!-- CGD-24: inventory overlay -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,7 +16,8 @@
       <span id="hud-turn">Turn: 0</span>
     </div>
     <div id="game-container"></div>
-    <div id="controls">WASD / ↑↓←→ to move &nbsp;·&nbsp; step on &gt; to descend</div>
+    <div id="controls">WASD / ↑↓←→ to move &nbsp;·&nbsp; step on &gt; to descend &nbsp;·&nbsp; I = inventory</div>
+    <div id="inventory" class="hidden"></div>
     <div id="game-over" class="hidden">
       <p>GAME OVER</p>
       <p id="game-over-turns"></p>

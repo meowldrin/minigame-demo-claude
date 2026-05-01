@@ -6,7 +6,7 @@ import { TILE } from "./mapGenerator.js";
 
 export function createPlayer(x, y, hp = 10) {
   return {
-    type: "player", x, y, hp, attack: 1,
+    type: "player", x, y, hp, maxHp: hp, attack: 1,
     defense: 0,
     inventory: [],
     equipment: { weapon: null, armor: null },
@@ -71,6 +71,16 @@ export function equipItem(player, item) {
 // CGD-22: use a consumable item (e.g. heal potion).
 // Applies the effect and removes the item from inventory.
 export function useItem(player, item) {
-  if (item.effect.heal) player.hp += item.effect.heal;
+  if (item.effect.heal) player.hp = Math.min(player.maxHp, player.hp + item.effect.heal);
   player.inventory = player.inventory.filter(i => i !== item);
+}
+
+// CGD-24: remove equipped item from its slot and return it to inventory.
+export function unequipItem(player, slot) {
+  const item = player.equipment[slot];
+  if (!item) return;
+  if (item.effect.attack)  player.attack  -= item.effect.attack;
+  if (item.effect.defense) player.defense -= item.effect.defense;
+  player.equipment[slot] = null;
+  player.inventory.push(item);
 }
