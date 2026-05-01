@@ -1,7 +1,9 @@
 // CGD-1..CGD-9: entry point — state, map, fog, combat, enemy turns, HUD, game-over.
 // CGD-10: stairs advance to next floor.
+// CGD-23: chest interaction — step to loot.
 import { createGameState, createPlayer, createEnemy, addEntity } from "./gameState.js";
 import { generateRoom, TILE } from "./mapGenerator.js";
+import { rollLoot } from "./items.js";
 import { bindPlayerInput } from "./player.js";
 import { doEnemyTurns } from "./enemy.js";
 import { resolveDeaths } from "./combat.js";
@@ -68,6 +70,16 @@ bindPlayerInput(state, (s) => {
   if (s.room[s.player.y][s.player.x] === TILE.STAIRS) {
     nextFloor(s, fog);
     return;
+  }
+
+  // Check if the player stepped on a closed chest.
+  if (s.room[s.player.y][s.player.x] === TILE.CHEST) {
+    const key = `${s.player.x},${s.player.y}`;
+    if (!s.chests[key]) {
+      s.chests[key] = true;
+      const items = rollLoot(s.currentFloor);
+      items.forEach(item => s.player.inventory.push(item));
+    }
   }
 
   // Enemy turns — may damage the player.
