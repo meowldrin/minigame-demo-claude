@@ -19,6 +19,7 @@ export function createGameState() {
     entities: [],
     turn: 0,
     lastHits: [], // CGD-12: positions hit this turn, used for flash animation.
+    chests: {},   // CGD-20: looted chest positions, keyed "x,y" → true.
   };
 }
 

@@ -11,12 +11,18 @@ const TILE_COLORS = {
   [TILE.WALL]:   "#252545",
   [TILE.FLOOR]:  "#0c0c1e",
   [TILE.STAIRS]: "#b8872a",
+  [TILE.CHEST]:  "#7a5214",  // closed chest — warm brown
+};
+
+const TILE_COLORS_LOOTED = {
+  [TILE.CHEST]:  "#2a2010",  // looted chest — dark, emptied
 };
 
 const TILE_COLORS_DIM = {
   [TILE.WALL]:   "#111126",
   [TILE.FLOOR]:  "#06060f",
   [TILE.STAIRS]: "#6b4e18",
+  [TILE.CHEST]:  "#3d2a0a",
 };
 
 export function render(state, container, fog) {
@@ -49,13 +55,16 @@ export function render(state, container, fog) {
           continue;
         }
         if (!fog.visible[y][x]) {
-          container.appendChild(makeCell(x, y, TILE_COLORS_DIM[tile]));
+          container.appendChild(makeCell(x, y, TILE_COLORS_DIM[tile] ?? TILE_COLORS_DIM[TILE.FLOOR]));
           continue;
         }
       }
 
-      const cell = makeCell(x, y, TILE_COLORS[tile]);
+      const isLooted = tile === TILE.CHEST && state.chests[`${x},${y}`];
+      const color = isLooted ? TILE_COLORS_LOOTED[TILE.CHEST] : (TILE_COLORS[tile] ?? TILE_COLORS[TILE.FLOOR]);
+      const cell = makeCell(x, y, color);
       if (tile === TILE.STAIRS) addStairsGlyph(cell);
+      if (tile === TILE.CHEST)  addChestGlyph(cell, isLooted);
       container.appendChild(cell);
     }
   }
@@ -121,5 +130,21 @@ function addStairsGlyph(cell) {
   cell.style.fontSize        = "18px";
   cell.style.fontWeight      = "bold";
   cell.textContent = ">";
+}
+
+function addChestGlyph(cell, isLooted) {
+  cell.style.display         = "flex";
+  cell.style.alignItems      = "center";
+  cell.style.justifyContent  = "center";
+  cell.style.fontFamily      = "monospace";
+  cell.style.fontSize        = "16px";
+  cell.style.fontWeight      = "bold";
+  if (isLooted) {
+    cell.style.color = "#5a4828";
+    cell.textContent = "_";  // empty, flat
+  } else {
+    cell.style.color = "#ffd060";
+    cell.textContent = "C";  // closed chest
+  }
 }
 

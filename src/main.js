@@ -41,6 +41,7 @@ function nextFloor(s, f) {
   s.player.x = 2;
   s.player.y = 2;
   s.entities = [];
+  s.chests = {};  // CGD-20: reset chest loot state for the new floor.
   const enemyCount = 2 + Math.floor(s.currentFloor / 2);
   for (let i = 0; i < enemyCount; i++) {
     addEntity(s, createEnemy(
