@@ -7,12 +7,21 @@ body {
   margin: 0;
   background: #0a0a12;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  gap: 12px;
   font-family: monospace;
+  overflow: hidden;
+}
+
+/* CGD-40: scalable wrapper — JS measures natural size then scales it to fit viewport */
+#game-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transform-origin: top center;
+  will-change: transform;
 }
 
 /* ── HUD ──────────────────────────────────────────────── */
@@ -49,6 +58,11 @@ body {
   background: #000;
   border: 1px solid #2a2a55;
   box-shadow: 0 0 24px rgba(60, 60, 160, 0.25);
+  touch-action: none;  /* CGD-40: prevent scroll/pinch on touch devices */
+}
+
+#game-container canvas {
+  image-rendering: pixelated;  /* CGD-40: keep sprites crisp when scaled */
 }
 
 /* Tiles rendered by JS get this class for the subtle grid */
