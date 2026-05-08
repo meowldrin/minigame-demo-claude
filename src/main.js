@@ -1,6 +1,7 @@
 // CGD-1..CGD-9: entry point — state, map, fog, combat, enemy turns, HUD, game-over.
 // CGD-10: stairs advance to next floor.
 // CGD-23: chest interaction — step to loot.
+// CGD-40: responsive scaling via initScale().
 import { createGameState, createPlayer, createEnemy, addEntity } from "./gameState.js";
 import { generateRoom, TILE } from "./mapGenerator.js";
 import { rollLoot } from "./items.js";
@@ -11,6 +12,7 @@ import { render } from "./render.js";
 import { createFog, updateFog } from "./fogOfWar.js";
 import { loadSprites } from "./sprites.js";
 import { initInventory, isInventoryOpen } from "./inventory.js";
+import { initScale } from "./scale.js";
 
 const container  = document.getElementById("game-container");
 const hudHp      = document.getElementById("hud-hp");
@@ -42,6 +44,9 @@ updateHud(state);
 
 // CGD-24: init inventory overlay (I key / Escape to toggle).
 initInventory(state, () => updateHud(state));
+
+// CGD-40: scale the game wrapper to fit the viewport after first render.
+initScale();
 
 function nextFloor(s, f) {
   s.currentFloor += 1;

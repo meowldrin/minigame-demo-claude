@@ -10,15 +10,17 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="hud">
-      <span id="hud-hp">HP: 10</span>
-      <span id="hud-atk">ATK: 1</span>
-      <span id="hud-def">DEF: 0</span>
-      <span id="hud-floor">Floor: 1</span>
-      <span id="hud-turn">Turn: 0</span>
+    <div id="game-wrapper">
+      <div id="hud">
+        <span id="hud-hp">HP: 10</span>
+        <span id="hud-atk">ATK: 1</span>
+        <span id="hud-def">DEF: 0</span>
+        <span id="hud-floor">Floor: 1</span>
+        <span id="hud-turn">Turn: 0</span>
+      </div>
+      <div id="game-container"></div>
+      <div id="controls">WASD / ↑↓←→ to move &nbsp;·&nbsp; step on &gt; to descend &nbsp;·&nbsp; I = inventory</div>
     </div>
-    <div id="game-container"></div>
-    <div id="controls">WASD / ↑↓←→ to move &nbsp;·&nbsp; step on &gt; to descend &nbsp;·&nbsp; I = inventory</div>
     <div id="inventory" class="hidden"></div>
     <div id="game-over" class="hidden">
       <p>GAME OVER</p>
