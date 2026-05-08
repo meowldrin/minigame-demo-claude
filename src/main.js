@@ -2,6 +2,8 @@
 // CGD-10: stairs advance to next floor.
 // CGD-23: chest interaction — step to loot.
 // CGD-40: responsive scaling via initScale().
+// CGD-41: swipe input via bindTouchInput().
+// CGD-42: virtual D-pad via bindDpad().
 import { createGameState, createPlayer, createEnemy, addEntity } from "./gameState.js";
 import { generateRoom, TILE } from "./mapGenerator.js";
 import { rollLoot } from "./items.js";
@@ -11,8 +13,10 @@ import { resolveDeaths } from "./combat.js";
 import { render } from "./render.js";
 import { createFog, updateFog } from "./fogOfWar.js";
 import { loadSprites } from "./sprites.js";
-import { initInventory, isInventoryOpen } from "./inventory.js";
+import { initInventory, isInventoryOpen, toggleInventory } from "./inventory.js";
 import { initScale } from "./scale.js";
+import { bindTouchInput } from "./touch.js";
+import { bindDpad } from "./dpad.js";
 
 const container  = document.getElementById("game-container");
 const hudHp      = document.getElementById("hud-hp");
@@ -71,7 +75,8 @@ function nextFloor(s, f) {
   updateHud(s);
 }
 
-bindPlayerInput(state, (s) => {
+// Shared turn handler — used by keyboard, swipe, and D-pad.
+function handleTurn(s) {
   if (gameOver) return;
   if (isInventoryOpen()) return;
 
@@ -100,6 +105,7 @@ bindPlayerInput(state, (s) => {
   // Check player death.
   if (s.player.hp <= 0) {
     gameOver = true;
+    document.getElementById("dpad")?.classList.add("hidden");
     updateFog(fog, s.player.x, s.player.y);
     render(s, container, fog);
     updateHud(s);
@@ -111,7 +117,11 @@ bindPlayerInput(state, (s) => {
   updateFog(fog, s.player.x, s.player.y);
   render(s, container, fog);
   updateHud(s);
-});
+}
+
+bindPlayerInput(state, handleTurn);
+bindTouchInput(state, handleTurn);
+bindDpad(state, handleTurn, () => toggleInventory(state, () => updateHud(state)));
 
 function updateHud(s) {
   hudHp.textContent    = `HP: ${s.player.hp}/${s.player.maxHp}`;

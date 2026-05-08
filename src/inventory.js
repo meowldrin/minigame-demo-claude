@@ -1,4 +1,5 @@
 // CGD-24: inventory overlay — toggle with I/Escape, use/equip/unequip items.
+// CGD-42: toggleInventory() exported for the D-pad inventory button.
 import { equipItem, useItem, unequipItem } from "./gameState.js";
 
 const overlay = document.getElementById("inventory");
@@ -12,11 +13,7 @@ export function initInventory(state, onUpdate) {
   window.addEventListener("keydown", (e) => {
     if (e.key === "i" || e.key === "I") {
       e.preventDefault();
-      if (isInventoryOpen()) {
-        closeInventory();
-      } else {
-        openInventory(state, onUpdate);
-      }
+      toggleInventory(state, onUpdate);
     }
     if (e.key === "Escape" && isInventoryOpen()) {
       closeInventory();
@@ -24,13 +21,24 @@ export function initInventory(state, onUpdate) {
   });
 }
 
+// CGD-42: called by the D-pad [I] button on touch devices.
+export function toggleInventory(state, onUpdate) {
+  if (isInventoryOpen()) {
+    closeInventory();
+  } else {
+    openInventory(state, onUpdate);
+  }
+}
+
 function openInventory(state, onUpdate) {
   renderPanel(state, onUpdate);
   overlay.classList.remove("hidden");
+  document.getElementById("dpad")?.classList.add("hidden");
 }
 
 function closeInventory() {
   overlay.classList.add("hidden");
+  document.getElementById("dpad")?.classList.remove("hidden");
 }
 
 function renderPanel(state, onUpdate) {

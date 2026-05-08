@@ -7,6 +7,7 @@ body {
   margin: 0;
   background: #0a0a12;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
@@ -219,4 +220,53 @@ body {
 
 .hit {
   animation: hit-flash 0.2s ease-out forwards;
+}
+
+/* ── Virtual D-pad (CGD-42) ────────────────────────────── */
+/* Hidden on desktop (pointer: fine). Only shown on touch devices. */
+#dpad {
+  display: none;
+}
+
+@media (pointer: coarse) {
+  #dpad {
+    display: grid;
+    grid-template-areas:
+      ".    up   .    .   ."
+      "lft  .    rgt  .   inv"
+      ".    dn   .    .   .";
+    grid-template-columns: 60px 60px 60px 20px 60px;
+    grid-template-rows: 60px 60px 60px;
+    gap: 4px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+  }
+
+  #dpad-up    { grid-area: up; }
+  #dpad-left  { grid-area: lft; }
+  #dpad-right { grid-area: rgt; }
+  #dpad-down  { grid-area: dn; }
+  #dpad-inv   { grid-area: inv; }
+
+  .dpad-btn {
+    background: rgba(18, 18, 42, 0.9);
+    border: 1px solid #2a2a55;
+    border-radius: 10px;
+    color: #9090cc;
+    font-family: monospace;
+    font-size: 24px;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+  }
+
+  .dpad-btn:active {
+    background: rgba(42, 42, 85, 0.95);
+    color: #c8c8e8;
+    border-color: #4a4a88;
+  }
 }
